@@ -51,7 +51,7 @@ public class BaseConfig {
 
             var text = miniMessage.deserialize(this.pokegiftFeedback,
                     Placeholder.unparsed("level", String.valueOf(pokemon.getLevel())),
-                    Placeholder.unparsed("pokemon", pokemon.getDisplayName().getString()),
+                    Placeholder.unparsed("pokemon", pokemon.getDisplayName(false).getString()),
                     Placeholder.unparsed("player", targetPlayer.getName().getString()));
 
             return Component.Serializer.fromJson(GsonComponentSerializer.gson().serialize(text), targetPlayer.registryAccess());
@@ -92,7 +92,7 @@ public class BaseConfig {
         public Component receivedPokemonFeedback(ServerPlayer player, Pokemon pokemon) {
             var text = Pokegift.miniMessage.deserialize(this.receivedPokemonFeedback,
                     Placeholder.unparsed("player", player.getName().getString()),
-                    Placeholder.unparsed("pokemon", pokemon.getDisplayName().getString())
+                    Placeholder.unparsed("pokemon", pokemon.getDisplayName(false).getString())
             );
 
             return Component.Serializer.fromJson(GsonComponentSerializer.gson().serialize(text), player.registryAccess());
